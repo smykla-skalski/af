@@ -17,11 +17,7 @@
     "security:openssf-scorecard",
     "group:linters"
   ],
-  "ignorePaths": [
-    "**/tmp/**",
-    ".github/workflows/smyklot-pr-commands.yml",
-    ".github/workflows/smyklot-poll.yml"
-  ],
+  "ignorePaths": ["**/tmp/**", ".github/workflows/smyklot-pr-commands.yml", ".github/workflows/smyklot-poll.yml"],
   "osvVulnerabilityAlerts": true,
   "gitIgnoredAuthors": ["205507218+smyklot[bot]@users.noreply.github.com"],
   "packageRules": [
@@ -61,10 +57,18 @@
       "matchPackageNames": ["smykla-skalski/smyklot"]
     }
   ],
-  "vulnerabilityAlerts": {
-    "automerge": false
-  },
+  "vulnerabilityAlerts": {"automerge": false},
   "automerge": false,
-  "customManagers": [{"customType":"regex","datasourceTemplate":"crate","depNameTemplate":"octocrab","description":"Update octocrab version in flake.nix when Cargo.lock changes","managerFilePatterns":["/^flake\\.nix$/"],"matchStrings":["\\$cargoDepsCopy/octocrab-(?<currentValue>[^/]+)/build\\.rs"],"versioningTemplate":"cargo"}],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "datasourceTemplate": "crate",
+      "depNameTemplate": "octocrab",
+      "description": "Update octocrab version in flake.nix when Cargo.lock changes",
+      "managerFilePatterns": ["/^flake\\.nix$/"],
+      "matchStrings": ["\\$cargoDepsCopy/octocrab-(?<currentValue>[^/]+)/build\\.rs"],
+      "versioningTemplate": "cargo"
+    }
+  ],
   "schedule": ["on the first day of the month"]
 }
