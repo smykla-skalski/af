@@ -1,5 +1,5 @@
 [tools]
-pandoc = "3.6.4"
+pandoc = "3.11"
 
 # Build
 
