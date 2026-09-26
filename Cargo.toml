@@ -3,7 +3,7 @@ resolver = "3"
 members = ["af-alfred-workflow", "xtasks/*"]
 
 [workspace.package]
-version = "0.11.176"
+version = "0.11.177"
 edition = "2024"
 repository = "https://github.com/smykla-skalski/af"
 license = "MIT"
@@ -35,7 +35,7 @@ url = "2.5.8"
 
 [package]
 name = "af"
-version = "0.11.176"
+version = "0.11.177"
 edition = "2024"
 repository = "https://github.com/smykla-skalski/af"
 license = "MIT"
