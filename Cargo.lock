@@ -1848,9 +1848,9 @@ checksum = "439ee305def115ba05938db6eb1644ff94165c5ab5e9420d1c1bcedbba909391"
 
 [[package]]
 name = "powerpack"
-version = "0.7.0"
+version = "0.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3a0ff9d015b06819f9bfda60ea6e6eb790f205dc4f91a5bf771435d7c4e31f64"
+checksum = "3d311d7cbf51c1c3caa98f293da99848de7bab62387701bf7ac8919e78c03252"
 dependencies = [
  "powerpack-env",
  "serde",
@@ -1859,9 +1859,9 @@ dependencies = [
 
 [[package]]
 name = "powerpack-env"
-version = "0.7.0"
+version = "0.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "41d42a064b456edfdf862d47d6b06227a2bf617045a11f86f549e629ff908637"
+checksum = "b5ccb2282f209c63c5cebd7f144070572a4ebc78cc705b5133e3352f0fc2c9ca"
 dependencies = [
  "home",
 ]

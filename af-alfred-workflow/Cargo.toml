@@ -6,4 +6,4 @@ repository.workspace = true
 license.workspace = true
 
 [dependencies]
-powerpack = "0.7.0"
+powerpack = "0.8.0"
