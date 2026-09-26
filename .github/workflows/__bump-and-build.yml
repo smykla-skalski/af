@@ -17,7 +17,7 @@ jobs:
   #############################################################################
 
   bump-version:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
 
     outputs:
       new-tag: ${{ steps.next-version.outputs.new_tag }}
@@ -106,7 +106,7 @@ jobs:
   #############################################################################
 
   define-matrix:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
 
     outputs:
       matrix: ${{ steps.define-matrix.outputs.matrix }}
