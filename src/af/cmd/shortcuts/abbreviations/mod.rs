@@ -85,7 +85,7 @@ impl Abbreviation {
                         let head = repo
                             .head()
                             .ok()
-                            .and_then(|h| h.shorthand().map(str::to_string))
+                            .and_then(|h| h.shorthand().ok().map(str::to_string))
                             .unwrap_or_default();
 
                         if head != default_branch {
@@ -112,7 +112,7 @@ impl Abbreviation {
                     if let Some(remote) = found_remote {
                         match repo.head() {
                             Ok(head) if head.is_branch() => {
-                                if let Some(branch) = head.shorthand() {
+                                if let Ok(branch) = head.shorthand() {
                                     let mut cmd = vec![GIT, PUSH, &remote, branch];
 
                                     if *no_verify {
@@ -218,7 +218,7 @@ where
 
             // Try HEAD first
             if let Ok((_, Some(reference))) = repo.revparse_ext(&head_spec)
-                && let Some(ref_short) = reference.shorthand() {
+                && let Ok(ref_short) = reference.shorthand() {
                     return Ok((
                         remote_name.to_string(),
                         ref_short.replace(&clean_pattern, ""),
