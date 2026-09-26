@@ -1,19 +1,5 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "automerge": false,
-  "customManagers": [
-    {
-      "customType": "regex",
-      "datasourceTemplate": "crate",
-      "depNameTemplate": "octocrab",
-      "description": "Update octocrab version in flake.nix when Cargo.lock changes",
-      "managerFilePatterns": ["/^flake\\.nix$/"],
-      "matchStrings": [
-        "\\$cargoDepsCopy/octocrab-(?<currentValue>[^/]+)/build\\.rs"
-      ],
-      "versioningTemplate": "cargo"
-    }
-  ],
   "extends": [
     "config:best-practices",
     ":semanticCommits",
@@ -31,13 +17,9 @@
     "security:openssf-scorecard",
     "group:linters"
   ],
-  "gitIgnoredAuthors": ["205507218+smyklot[bot]@users.noreply.github.com"],
-  "ignorePaths": [
-    "**/tmp/**",
-    ".github/workflows/smyklot-pr-commands.yml",
-    ".github/workflows/smyklot-poll.yml"
-  ],
+  "ignorePaths": ["**/tmp/**", ".github/workflows/smyklot-pr-commands.yml", ".github/workflows/smyklot-poll.yml"],
   "osvVulnerabilityAlerts": true,
+  "gitIgnoredAuthors": ["205507218+smyklot[bot]@users.noreply.github.com"],
   "packageRules": [
     {
       "addLabels": ["area/ci"],
@@ -58,10 +40,8 @@
         " Group dependency bumps from selected GitHub sources into a single PR across managers",
         " (e.g., mise and gomod) to avoid separate PRs per manager"
       ],
-      "groupName": "{{{replace 'https://github\\.com/[a-z-]+/' '' sourceUrl}}}",
-      "matchSourceUrls": [
-        "https://github.com/{onsi/ginkgo,golangci/golangci-lint}"
-      ]
+      "matchSourceUrls": ["https://github.com/{onsi/ginkgo,golangci/golangci-lint}"],
+      "groupName": "{{{replace 'https://github\\.com/[a-z-]+/' '' sourceUrl}}}"
     },
     {
       "description": "Group Go version updates from gomod and mise into a single PR",
@@ -77,8 +57,18 @@
       "matchPackageNames": ["smykla-skalski/smyklot"]
     }
   ],
-  "schedule": ["on the first day of the month"],
-  "vulnerabilityAlerts": {
-    "automerge": false
-  }
+  "vulnerabilityAlerts": {"automerge": false},
+  "automerge": false,
+  "customManagers": [
+    {
+      "customType": "regex",
+      "datasourceTemplate": "crate",
+      "depNameTemplate": "octocrab",
+      "description": "Update octocrab version in flake.nix when Cargo.lock changes",
+      "managerFilePatterns": ["/^flake\\.nix$/"],
+      "matchStrings": ["\\$cargoDepsCopy/octocrab-(?<currentValue>[^/]+)/build\\.rs"],
+      "versioningTemplate": "cargo"
+    }
+  ],
+  "schedule": ["on the first day of the month"]
 }
