@@ -9,6 +9,6 @@ license.workspace = true
 af.workspace = true
 anyhow.workspace = true
 clap.workspace = true
-clap_mangen = "0.2.26"
+clap_mangen = "0.3.0"
 
 [build-dependencies]
