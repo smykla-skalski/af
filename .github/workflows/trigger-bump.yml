@@ -9,6 +9,11 @@ on:
 permissions:
   contents: read
 
+# Two runs at once could both read the same previous tag and release twice.
+concurrency:
+  group: trigger-bump
+  cancel-in-progress: false
+
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
@@ -19,12 +24,22 @@ jobs:
   ##############################################################################
 
   check-if-should-bump:
+    # On other branches the tag action gives a preview version, and the bump
+    # job would commit and tag it there.
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-26.04
 
     outputs:
       bump: ${{ steps.next-version.outputs.new_version != '' }}
 
     steps:
+    # The tag action falls back to local git when the compare API fails.
+    - name: "Checkout"
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      with:
+        fetch-depth: 0
+        persist-credentials: false
+
     # Same action as the bump-version job, so both pick the same previous tag
     # and skip the same commits. It gives no version when nothing is eligible.
     - name: "Check for releasable commits"
