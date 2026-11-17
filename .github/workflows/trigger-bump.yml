@@ -41,7 +41,8 @@ jobs:
         persist-credentials: false
 
     # Same action as the bump-version job, so both pick the same previous tag
-    # and skip the same commits. It gives no version when nothing is eligible.
+    # and ignore the same [no-release] commits. path_filter only narrows the
+    # commits, so a version here means bump-version also gets one.
     - name: "Check for releasable commits"
       id: next-version
       uses: mathieudutour/github-tag-action@af99e60ce8132224b8e6ebab5023449fe256ed46 # v7.0.0
