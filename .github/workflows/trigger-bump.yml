@@ -11,7 +11,7 @@ permissions:
 
 # Two runs at once could both read the same previous tag and release twice.
 concurrency:
-  group: trigger-bump
+  group: trigger-bump-${{ github.ref }}
   cancel-in-progress: false
 
 env:
