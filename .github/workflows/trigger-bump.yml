@@ -31,20 +31,12 @@ jobs:
         fetch-depth: 0
         persist-credentials: false
 
-    - name: "Generate GitHub App Token"
-      id: github-app-token
-      uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
-      with:
-        app-id: ${{ vars.SMYKLOT_APP_ID }}
-        private-key: ${{ secrets.SMYKLOT_APP_PRIVATE_KEY }}
-
     - name: "Define if version should be bumped"
       id: should-bump
-      env:
-        GH_TOKEN: ${{ steps.github-app-token.outputs.token }}
       run: |
-        last_tag="$(gh api repos/:owner/:repo/tags --paginate --jq '.[0].name')"
-        if ! git diff --quiet "$last_tag...HEAD" -- .github/scripts .github/workflows src Cargo.toml Cargo.lock xtasks; then
+        last_tag="$(git describe --tags --abbrev=0)"
+        changed="$(git diff --name-only "$last_tag" HEAD -- .github/scripts .github/workflows src Cargo.toml Cargo.lock xtasks)"
+        if [[ -n "$changed" ]]; then
           echo "bump=true" >> "$GITHUB_OUTPUT"
         fi
 
